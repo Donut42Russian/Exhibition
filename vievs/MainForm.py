@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\cmitd\Documents\PycharmProjects\exhibion\vievs\maintesr.ui'
+# Form implementation generated from reading ui file 'C:\Users\admin\PycharmProjects\exhibition\vievs\maintesr1.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MonitorManagment(object):
     def setupUi(self, MonitorManagment):
+
         MonitorManagment.setObjectName("MonitorManagment")
         MonitorManagment.setEnabled(True)
         MonitorManagment.resize(1000, 700)
@@ -32,21 +34,6 @@ class Ui_MonitorManagment(object):
         font.setPointSize(24)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.buttonDialogProjector = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttonDialogProjector.setGeometry(QtCore.QRect(52, 150, 156, 23))
-        self.buttonDialogProjector.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonDialogProjector.setObjectName("buttonDialogProjector")
-        self.buttonDialogScreen_3 = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttonDialogScreen_3.setEnabled(True)
-        self.buttonDialogScreen_3.setGeometry(QtCore.QRect(244, 400, 156, 23))
-        self.buttonDialogScreen_3.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
-        self.buttonDialogScreen_3.setObjectName("buttonDialogScreen_3")
-        self.buttonDialogScreen_2 = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttonDialogScreen_2.setEnabled(True)
-        self.buttonDialogScreen_2.setGeometry(QtCore.QRect(244, 371, 156, 23))
-        self.buttonDialogScreen_2.setMouseTracking(True)
-        self.buttonDialogScreen_2.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
-        self.buttonDialogScreen_2.setObjectName("buttonDialogScreen_2")
         self.ScreenIndicator_2 = QtWidgets.QCheckBox(self.centralwidget)
         self.ScreenIndicator_2.setEnabled(False)
         self.ScreenIndicator_2.setGeometry(QtCore.QRect(52, 371, 121, 17))
@@ -59,32 +46,43 @@ class Ui_MonitorManagment(object):
         self.ScreenIndicator_3.setEnabled(False)
         self.ScreenIndicator_3.setGeometry(QtCore.QRect(52, 400, 121, 17))
         self.ScreenIndicator_3.setObjectName("ScreenIndicator_3")
-        self.buttonDialogScreen_1 = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttonDialogScreen_1.setEnabled(True)
-        self.buttonDialogScreen_1.setGeometry(QtCore.QRect(244, 342, 156, 23))
-        self.buttonDialogScreen_1.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
-        self.buttonDialogScreen_1.setCenterButtons(False)
-        self.buttonDialogScreen_1.setObjectName("buttonDialogScreen_1")
-        self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(210, 250, 211, 71))
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(51, 248, 155, 33))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.OffAllScreen = QtWidgets.QRadioButton(self.centralwidget)
-        self.OffAllScreen.setGeometry(QtCore.QRect(312, 256, 102, 17))
-        self.OffAllScreen.setObjectName("OffAllScreen")
-        self.OnAllScreen = QtWidgets.QRadioButton(self.centralwidget)
-        self.OnAllScreen.setGeometry(QtCore.QRect(212, 256, 94, 17))
-        self.OnAllScreen.setObjectName("OnAllScreen")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(310, 290, 75, 23))
-        self.pushButton.setObjectName("pushButton")
+        self.pushButtonOn = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonOn.setGeometry(QtCore.QRect(50, 150, 75, 23))
+        self.pushButtonOn.setObjectName("pushButtonOn")
+        self.pushButtonOff = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonOff.setGeometry(QtCore.QRect(140, 150, 75, 23))
+        self.pushButtonOff.setObjectName("pushButtonOff")
+        self.pushButtonM1Yes = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM1Yes.setGeometry(QtCore.QRect(240, 340, 75, 23))
+        self.pushButtonM1Yes.setObjectName("pushButtonM1Yes")
+        self.pushButtonM1No = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM1No.setGeometry(QtCore.QRect(320, 340, 75, 23))
+        self.pushButtonM1No.setObjectName("pushButtonM1No")
+        self.pushButtonM3Yes = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM3Yes.setGeometry(QtCore.QRect(240, 400, 75, 23))
+        self.pushButtonM3Yes.setObjectName("pushButtonM3Yes")
+        self.pushButtonM3No = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM3No.setGeometry(QtCore.QRect(320, 400, 75, 23))
+        self.pushButtonM3No.setObjectName("pushButtonM3No")
+        self.pushButtonM2Yes = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM2Yes.setGeometry(QtCore.QRect(240, 370, 75, 23))
+        self.pushButtonM2Yes.setObjectName("pushButtonM2Yes")
+        self.pushButtonM2No = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonM2No.setGeometry(QtCore.QRect(320, 370, 75, 23))
+        self.pushButtonM2No.setObjectName("pushButtonM2No")
+        self.pushButtonAllMOn = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonAllMOn.setGeometry(QtCore.QRect(230, 260, 151, 21))
+
+        self.pushButtonAllMOn.setObjectName("pushButtonAllMOn")
+        self.pushButtonAllMOff = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonAllMOff.setGeometry(QtCore.QRect(230, 290, 151, 21))
+        self.pushButtonAllMOff.setObjectName("pushButtonAllMOff")
         MonitorManagment.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MonitorManagment)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 21))
@@ -119,6 +117,7 @@ class Ui_MonitorManagment(object):
         self.retranslateUi(MonitorManagment)
         QtCore.QMetaObject.connectSlotsByName(MonitorManagment)
 
+
     def retranslateUi(self, MonitorManagment):
         _translate = QtCore.QCoreApplication.translate
         MonitorManagment.setWindowTitle(_translate("MonitorManagment", "MonitorManagment"))
@@ -128,9 +127,16 @@ class Ui_MonitorManagment(object):
         self.ScreenIndicator_1.setText(_translate("MonitorManagment", "1 Экран Включить?"))
         self.ScreenIndicator_3.setText(_translate("MonitorManagment", "3 Экран Включить?"))
         self.label.setText(_translate("MonitorManagment", "Главный зал"))
-        self.OffAllScreen.setText(_translate("MonitorManagment", "Выключить все"))
-        self.OnAllScreen.setText(_translate("MonitorManagment", "Включить все"))
-        self.pushButton.setText(_translate("MonitorManagment", "Применить"))
+        self.pushButtonOn.setText(_translate("MonitorManagment", "Включить"))
+        self.pushButtonOff.setText(_translate("MonitorManagment", "Выключить"))
+        self.pushButtonM1Yes.setText(_translate("MonitorManagment", "Да"))
+        self.pushButtonM1No.setText(_translate("MonitorManagment", "Нет"))
+        self.pushButtonM3Yes.setText(_translate("MonitorManagment", "Да"))
+        self.pushButtonM3No.setText(_translate("MonitorManagment", "Нет"))
+        self.pushButtonM2Yes.setText(_translate("MonitorManagment", "Да"))
+        self.pushButtonM2No.setText(_translate("MonitorManagment", "Нет"))
+        self.pushButtonAllMOn.setText(_translate("MonitorManagment", "Включить все мониторы"))
+        self.pushButtonAllMOff.setText(_translate("MonitorManagment", "Выключить все мониторы"))
         self.menuRe.setTitle(_translate("MonitorManagment", "Настройки"))
         self.menu.setTitle(_translate("MonitorManagment", "Служба техподдержки"))
         self.menu_2.setTitle(_translate("MonitorManagment", "Отправить Дмитрию сообщение"))
@@ -139,4 +145,3 @@ class Ui_MonitorManagment(object):
         self.action_5.setText(_translate("MonitorManagment", "Тест"))
         self.action_7.setText(_translate("MonitorManagment", "\"Вышла ошибка\""))
         self.action_8.setText(_translate("MonitorManagment", "\"Монитор или проектор не запустился\""))
-
