@@ -27,5 +27,6 @@ class Server():
         print(RPI)
     for i in RPI:
            RPI[i][1].send(b"run_video")
+           RPI[i][1].send(b"stop_video")
     while True:
         data = conn.recv(1024)

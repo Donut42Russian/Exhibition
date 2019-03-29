@@ -11,20 +11,48 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
     # startButtonSignal = QtCore.pyqtSignal()
 
     onClick = QtCore.pyqtSignal()
-    buttonDialogProjectorSignal = QtCore.pyqtSignal()
-    buttonDialogProjectorSignalAccepted = QtCore.pyqtSignal()
-    buttonDialogScreen_3Signal = QtCore.pyqtSignal()
-    buttonDialogScreen_3SignalAccepted = QtCore.pyqtSignal()
-    buttonDialogScreen_2Signal = QtCore.pyqtSignal()
-    buttonDialogScreen_2SignalAccepted = QtCore.pyqtSignal()
-    buttonDialogScreen_1Signal = QtCore.pyqtSignal()
-    buttonDialogScreen_1SignalAccepted = QtCore.pyqtSignal()
-    OffAllScreenSignal = QtCore.pyqtSignal()
-    OnAllScreenSignal = QtCore.pyqtSignal()
+
+    onMonitor1Signal = QtCore.pyqtSignal()# Включить монитор №1
+
+    onMonitor2Signal = QtCore.pyqtSignal()# Включить монитор №2
+
+    onMonitor3Signal = QtCore.pyqtSignal()# Включить монитор №3
+
+    offMonitor1Signal = QtCore.pyqtSignal()  # Выключить монитор №1
+
+    offMonitor2Signal = QtCore.pyqtSignal()  # Выключить монитор №2
+
+    offMonitor3Signal = QtCore.pyqtSignal()  # Выключить монитор №3
+
+    onAllMonitorSignal = QtCore.pyqtSignal()# Включить все мониторы
+
+    offAllMonitorSignal = QtCore.pyqtSignal()  # Выключить все мониторы
+
+    onProjectorSignal = QtCore.pyqtSignal() # Включить пректор
+
+    offProjectorSignal = QtCore.pyqtSignal()  # Выключить пректор
+
+    openOptions = QtCore.pyqtSignal() # Открыть параметры
+
+    sendDmitriyMessage = QtCore.pyqtSignal() # Отправить Дмитрию сообщение
+
+    #playVideoSignalForMonitor1 = QtCore.pyqtSignal() # Запустить видео на мониторе №1
+
+    #playVideoSignalForMonitor2 = QtCore.pyqtSignal()  # Запустить видео на монитрое №2
+
+    #playVideoSignalForMonitor3 = QtCore.pyqtSignal()  # Запустить видео на мониторе №3
+
+    #stopVideoSignal = QtCore.pyqtSignal() # Остановить видео
+
+    #selectFoldertoOpenImagesSignal = QtCore.pyqtSignal() # Выбор папки для открытия изобржений
+
+
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.text = ''
+        self.text1 = ''
 
         self.initUi()
 
@@ -34,21 +62,19 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
         # ##  Кнопки управления
         # self.pushButton.clicked.connect(self.startButtonSignal)
 
-        #self.pushButton.clicked.connect(self.onClick)
-        self.ProjectorIndicator.clicked.connect(self.onClick)
-        #self.buttonDialogProjector.accepted.connect(self.buttonDialogProjectorSignalAccepted)
-        #self.buttonDialogProjector.rejected.connect(self.buttonDialogProjectorSignal)
-        #self.buttonDialogScreen_3.accepted.connect(self.buttonDialogScreen_3SignalAccepted)
-        #self.buttonDialogScreen_3.rejected.connect(self.buttonDialogScreen_3Signal)
-        #self.buttonDialogScreen_2.accepted.connect(self.buttonDialogScreen_2SignalAccepted)
-        #self.buttonDialogScreen_2.rejected.connect(self.buttonDialogScreen_2Signal)
-        #self.buttonDialogScreen_1.accepted.connect(self.buttonDialogScreen_1SignalAccepted)
-        #self.buttonDialogScreen_1.rejected.connect(self.buttonDialogScreen_1Signal)
-        #self.ScreenIndicator_3.clicked.connect(self.Signal)
-        #self.ScreenIndicator_2.clicked.connect(self.Signal)
-        #self.OffAllScreen.clicked.connect(self.OffAllScreenSignal)
-        #self.OnAllScreen.clicked.connect(self.OnAllScreenSignal)
-        # self.lineEdit.textChanged.connect(partial(setattr, self, "text"))
+        self.pushButtonM1Yes.clicked.connect(self.onMonitor1Signal)
+        self.pushButtonM1No.clicked.connect(self.offMonitor1Signal)
+        self.pushButtonM2Yes.clicked.connect(self.onMonitor2Signal)
+        self.pushButtonM2No.clicked.connect(self.offMonitor2Signal)
+        self.pushButtonM3Yes.clicked.connect(self.onMonitor3Signal)
+        self.pushButtonM3No.clicked.connect(self.offMonitor3Signal)
+        self.pushButtonOn.clicked.connect(self.onProjectorSignal)
+        self.pushButtonOff.clicked.connect(self.offProjectorSignal)
+        self.pushButtonAllMOn.clicked.connect(self.onAllMonitorSignal)
+        self.pushButtonAllMOff.clicked.connect(self.offAllMonitorSignal)
+
+       #self.pushButtonM1Yes.clicked.connect(self.onMonitor1Signal)
+        #self.lineEdit.textChanged.connect(partial(setattr, self, "text"))
 
 
         #
@@ -59,7 +85,8 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
         #
         #
         # ## меню
-        # self.action.triggered.connect(self.openFileVideo)
+        #self.action.triggered.connect(self.openOptions)
+        #self.menu_2.triggered.connect(self.sendDmitryMessage)
         # self.action_LOG.triggered.connect(self.SaveLog)
 
 

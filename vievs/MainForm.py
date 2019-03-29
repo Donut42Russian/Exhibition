@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\admin\PycharmProjects\exhibition\vievs\maintesr1.ui'
+# Form implementation generated from reading ui file 'C:\Users\admin\PycharmProjects\Exhibition\vievs\maintesr1.ui'
 #
 # Created by: PyQt5 UI code generator 5.12
 #
@@ -11,7 +11,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MonitorManagment(object):
     def setupUi(self, MonitorManagment):
-
         MonitorManagment.setObjectName("MonitorManagment")
         MonitorManagment.setEnabled(True)
         MonitorManagment.resize(1000, 700)
@@ -78,7 +77,6 @@ class Ui_MonitorManagment(object):
         self.pushButtonM2No.setObjectName("pushButtonM2No")
         self.pushButtonAllMOn = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonAllMOn.setGeometry(QtCore.QRect(230, 260, 151, 21))
-
         self.pushButtonAllMOn.setObjectName("pushButtonAllMOn")
         self.pushButtonAllMOff = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonAllMOff.setGeometry(QtCore.QRect(230, 290, 151, 21))
@@ -117,7 +115,6 @@ class Ui_MonitorManagment(object):
         self.retranslateUi(MonitorManagment)
         QtCore.QMetaObject.connectSlotsByName(MonitorManagment)
 
-
     def retranslateUi(self, MonitorManagment):
         _translate = QtCore.QCoreApplication.translate
         MonitorManagment.setWindowTitle(_translate("MonitorManagment", "MonitorManagment"))
@@ -145,3 +142,5 @@ class Ui_MonitorManagment(object):
         self.action_5.setText(_translate("MonitorManagment", "Тест"))
         self.action_7.setText(_translate("MonitorManagment", "\"Вышла ошибка\""))
         self.action_8.setText(_translate("MonitorManagment", "\"Монитор или проектор не запустился\""))
+
+

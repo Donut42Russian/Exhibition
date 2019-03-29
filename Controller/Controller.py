@@ -1,12 +1,12 @@
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets 
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-from vievs.viev import View 
+from vievs.viev import View
 #from Model.modulVideo import modulVideo
-#from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap
 
-class Controller: 
+class Controller:
     def __init__(self):
         self._app = QtWidgets.QApplication(sys.argv)
 
@@ -27,36 +27,33 @@ class Controller:
         self._view.onAllMonitorSignal.connect(self.pushButtonAllMOn)
         self._view.offAllMonitorSignal.connect(self.pushButtonAllMOff)
 
-        #self._view.stopButtonSignal.connect(self.buttonStop)
+       #self._view.stopButtonSignal.connect(self.buttonStop)
 
         #self._model.frameSignal.connect(self.test, QtCore.Qt.QueuedConnection)
 
-    def onClickButton(self):
+    def pushButtonOn(self):
         print("Проектор включён")
-        print(self._view.text)
+    def pushButtonOff(self):
+        print("Проектор выключен")
 
     def pushButtonM1Yes(self):
         print("Монитор №1 включён")
 
+    def pushButtonM1No(self):
+        print("Монитор №1 выключен")
+
     def pushButtonM2Yes(self):
         print("Монитор №2 включён")
         #print(self._view.text
-    def pushButtonM3Yes(self):
-        print("Монитор №3 включён")
 
-    def pushButtonOn(self):
-        print("Проектор включён")
-
-    def pushButtonM1No(self):
-        print("Монитор №1 выключен")
     def pushButtonM2No(self):
         print("Монитор №2 выключен")
 
+    def pushButtonM3Yes(self):
+        print("Монитор №3 включён")
+
     def pushButtonM3No(self):
         print("Монитор №3 выключен")
-
-    def pushButtonOff(self):
-        print("Проектор выключен")
 
     def pushButtonAllMOn(self):
         print("Все мониторы включены")
@@ -64,22 +61,9 @@ class Controller:
     def pushButtonAllMOff(self):
         print("Все мониторы выключены")
 
-
-
     def run(self):
         self._view.show()
         return self._app.exec_()
 
-
-
-    def onProjector1(self): #Включить 1 проектор
-
-        print ("Проектор 1 включен")
         #self._view.pushButtonM1Yes.connect(self.onClickButton)
-
-
-
-
-
-
     #def offProjector(self):
