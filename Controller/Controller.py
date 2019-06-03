@@ -1,24 +1,26 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 from vievs.viev import View
-#from Model.modulVideo import modulVideo
+from Model.SocketServer import Server
+
 from PyQt5.QtGui import QPixmap
+
 
 class Controller:
     def __init__(self):
         self._app = QtWidgets.QApplication(sys.argv)
 
-        #self._model = modulVideo()
         self._view = View()
+        self.objServer = Server()
+        self.objServer.start()
+
         self.init()
 
     def init(self):
         self._view.onMonitor1Signal.connect(self.pushButtonM1Yes)
         self._view.onMonitor2Signal.connect(self.pushButtonM2Yes)
         self._view.onMonitor3Signal.connect(self.pushButtonM3Yes)
-        #self._view.onClick.connect(self.onClickButton)
         self._view.offMonitor1Signal.connect(self.pushButtonM1No)
         self._view.offMonitor2Signal.connect(self.pushButtonM2No)
         self._view.offMonitor3Signal.connect(self.pushButtonM3No)
@@ -27,43 +29,76 @@ class Controller:
         self._view.onAllMonitorSignal.connect(self.pushButtonAllMOn)
         self._view.offAllMonitorSignal.connect(self.pushButtonAllMOff)
 
-       #self._view.stopButtonSignal.connect(self.buttonStop)
-
-        #self._model.frameSignal.connect(self.test, QtCore.Qt.QueuedConnection)
 
     def pushButtonOn(self):
-        print("Проектор включён")
+        if self.objServer.run_projector() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Проектор включён")
+
+
     def pushButtonOff(self):
-        print("Проектор выключен")
+        if self.objServer.stop_projector() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Проектор выключен")
 
     def pushButtonM1Yes(self):
-        print("Монитор №1 включён")
+        if self.objServer.run_monitor1() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №1 включён")
 
     def pushButtonM1No(self):
-        print("Монитор №1 выключен")
+        if self.objServer.stop_monitor1() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №1 выключен")
 
     def pushButtonM2Yes(self):
-        print("Монитор №2 включён")
-        #print(self._view.text
+        if self.objServer.run_monitor2() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №2 включён")
 
     def pushButtonM2No(self):
-        print("Монитор №2 выключен")
+        if self.objServer.stop_monitor2() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №2 выключен")
+
 
     def pushButtonM3Yes(self):
-        print("Монитор №3 включён")
+        if self.objServer.run_monitor3() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №3 включён")
+
 
     def pushButtonM3No(self):
-        print("Монитор №3 выключен")
+        if self.objServer.stop_monitor3() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Монитор №3 выключен")
 
     def pushButtonAllMOn(self):
-        print("Все мониторы включены")
+        if self.objServer.run_video() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Все мониторы включены")
+
 
     def pushButtonAllMOff(self):
-        print("Все мониторы выключены")
+        if self.objServer.stop_video() == 0:
+            self._view.Error_Connection()
+        else:
+            print("Все мониторы выключены")
+
 
     def run(self):
         self._view.show()
         return self._app.exec_()
 
-        #self._view.pushButtonM1Yes.connect(self.onClickButton)
-    #def offProjector(self):
+
+        # self._view.pushButtonM1Yes.connect(self.onClickButton)
+    # def offProjector(self):

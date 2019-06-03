@@ -1,1 +1,2 @@
-pyuic5 C:\Users\cmitd\Documents\PycharmProjects\exhibion\vievs\maintesr1.ui -o C:\Users\cmitd\Documents\PycharmProjects\exhibion\vievs\MainForm.py
+pyuic5 C:\Users\admin\PycharmProjects\Exhibition\vievs\maintesr1.ui -o C:\Users\cmitd\Documents\PycharmProjects\exhibion\vievs\MainForm.py
+python -m PyQt5.uic.pyuic -x C:\Users\admin\PycharmProjects\Exhibition\vievs\maintesr1.ui -o C:\Users\admin\PycharmProjects\Exhibition\vievs\MainForm.py
