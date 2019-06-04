@@ -22,11 +22,21 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
     sendDmitriyMessage = QtCore.pyqtSignal()  # Отправить Дмитрию сообщение
 
     def __init__(self):
+
         super().__init__()
         self.setupUi(self)
         self.text = ''
         self.text1 = ''
         self.initUi()
+        self.on_create_context_menu()
+
+        ico = self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay)
+
+        self.sys_tray = QtWidgets.QSystemTrayIcon(ico, self) #!
+        self.sys_tray.setToolTip("Описание приложения")
+
+
+
 
     def initUi(self):
         self.Video = videoThread('192.168.1.242')
@@ -48,6 +58,17 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
         self.graphicsSceneImage.clear()
         self.graphicsSceneImage.addPixmap(pixMap)
         self.graphicsView.setScene(self.graphicsSceneImage)
+
+    def on_create_context_menu(self):
+        self.menuSystemTray = QtWidgets.QMenu("&SystemTray")
+        self.actShowHide = QtWidgets.QAction("&Отобразить или скрыть окно", None)
+        #self.actShowHide.triggered.connect(self.on_show_hide)
+        self.menuSystemTray.addAction(self.actShowHide)
+        self.menuSystemTray.addSeparator()
+        self.actQuit = QtWidgets.QAction("&Выход", None)
+        self.actQuit.triggered.connect(QtWidgets.qApp.quit)
+        self.menuSystemTray.addAction(self.actQuit)
+#        self.sys_tray.setContextMenu(self.menuSystemTray)
 
     def Error_Connection(self):
         messageBox = QtWidgets.QMessageBox(self)

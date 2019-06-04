@@ -14,7 +14,7 @@ class Server(Thread):
         self.RPI = {}
         # RPI['RPI1'] = ('127.0.0.1', None)
         self.RPI['RPI2'] = ['192.168.1.56', None]
-        self.RPI['RPI3'] = ['192.168.1.171', None]
+        self.RPI['RPI3'] = ['192.168.1.187', None] #192.168.1.171
         # RPI['RPI4'] = ('127.0.0.1', None)
 
 
