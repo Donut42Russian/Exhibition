@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import socket
 from threading import Thread
-
+import json
 
 class Server(Thread):
 
@@ -12,9 +12,9 @@ class Server(Thread):
         self.sock.bind(('', 9090))
         self.sock.listen(4)
         self.RPI = {}
-        # RPI['RPI1'] = ('127.0.0.1', None)
+        #self.RPI['RPI1'] = ('127.0.0.1', None)
         self.RPI['RPI2'] = ['192.168.1.56', None]
-        self.RPI['RPI3'] = ['192.168.1.187', None] #192.168.1.171
+        self.RPI['RPI3'] = ['192.168.1.171', None] #192.168.1.187
         # RPI['RPI4'] = ('127.0.0.1', None)
 
 
@@ -28,6 +28,10 @@ class Server(Thread):
                     print(addr[0])
 
             print(self.RPI)
+
+    def stop(self):
+        print("stop EXHIBITION")
+        self.terminate()
 
     def get_message(self):
         data = test.conn.recv(1024)
@@ -189,3 +193,4 @@ class Server(Thread):
 if __name__ == '__main__':
     test = Server()
     test.connect()
+

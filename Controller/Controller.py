@@ -1,9 +1,10 @@
 import sys
+import json
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from vievs.viev import View
 from Model.SocketServer import Server
-
+from tune_up.settings import Settings
 from PyQt5.QtGui import QPixmap
 
 
@@ -11,6 +12,8 @@ class Controller:
     def __init__(self):
         self._app = QtWidgets.QApplication(sys.argv)
 
+        pathSettings = r'tune_up/settings'
+        testSettings = Settings(pathSettings)
         self._view = View()
         self.objServer = Server()
         self.objServer.start()
@@ -28,7 +31,7 @@ class Controller:
         self._view.offProjectorSignal.connect(self.pushButtonOff)
         self._view.onAllMonitorSignal.connect(self.pushButtonAllMOn)
         self._view.offAllMonitorSignal.connect(self.pushButtonAllMOff)
-
+        self._view.stopSignal.connect(self.pushStop)
 
     def pushButtonOn(self):
         if self.objServer.run_projector() == 0:
@@ -94,11 +97,9 @@ class Controller:
         else:
             print("Все мониторы выключены")
 
+    def pushStop(self):
+        self.objServer.stop()
 
     def run(self):
         self._view.show()
         return self._app.exec_()
-
-
-        # self._view.pushButtonM1Yes.connect(self.onClickButton)
-    # def offProjector(self):
