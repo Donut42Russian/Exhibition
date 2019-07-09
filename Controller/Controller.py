@@ -1,11 +1,9 @@
 import sys
-import json
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
 
 from vievs.viev import View
 from Model.SocketServer import Server
 from tune_up.settings import Settings
-from PyQt5.QtGui import QPixmap
 
 
 class Controller:
@@ -13,9 +11,9 @@ class Controller:
         self._app = QtWidgets.QApplication(sys.argv)
 
         pathSettings = r'tune_up/settings'
-        testSettings = Settings(pathSettings)
+        self.testSettings = Settings(pathSettings)
         self._view = View()
-        self.objServer = Server()
+        self.objServer = Server(self.testSettings)
         self.objServer.start()
 
         self.init()

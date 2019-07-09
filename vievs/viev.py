@@ -1,8 +1,6 @@
-import sys
-from functools import partial
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from vievs.MainForm import Ui_MonitorManagment
-from vievs.Video import videoThread
+#from Test.Video import videoThread
 
 
 class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
@@ -42,8 +40,8 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
         self.on_create_context_menu()
 
     def initUi(self):
-        self.Video = videoThread('192.168.1.242')
-        self.Video.start()
+        #self.Video = videoThread('192.168.1.242')
+        #self.Video.start()
         self.graphicsSceneImage = QtWidgets.QGraphicsScene()
         self.pushButtonM1Yes.clicked.connect(self.onMonitor1Signal)
         self.pushButtonM1No.clicked.connect(self.offMonitor1Signal)
@@ -55,7 +53,7 @@ class View(QtWidgets.QMainWindow, Ui_MonitorManagment):
         self.pushButtonOff.clicked.connect(self.offProjectorSignal)
         self.pushButtonAllMOn.clicked.connect(self.onAllMonitorSignal)
         self.pushButtonAllMOff.clicked.connect(self.offAllMonitorSignal)
-        self.Video.frameSignal.connect(self.showGraphicsViewImage, QtCore.Qt.QueuedConnection)
+        #self.Video.frameSignal.connect(self.showGraphicsViewImage, QtCore.Qt.QueuedConnection)
 
     def showGraphicsViewImage(self, pixMap):
         self.graphicsSceneImage.clear()
