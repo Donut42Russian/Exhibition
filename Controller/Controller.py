@@ -15,7 +15,6 @@ class Controller:
         self._view = View()
         self.objServer = Server(self.testSettings)
         self.objServer.start()
-
         self.init()
 
     def init(self):
