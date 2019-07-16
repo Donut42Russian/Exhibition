@@ -15,9 +15,9 @@ class Server(Thread):
         self.sock = socket.socket()
         self.sock.bind(('', 9090))
         self.sock.listen(4)
-
+        self.n = 0
         self.RPI = self.Settings.settings
-    #--------------------------------------------------------------
+
 
     def run(self):
         while True:
@@ -26,19 +26,27 @@ class Server(Thread):
                 print(self.RPI[i][0])
                 if self.RPI[i][0] == self.addr[0]:
                     self.RPI[i][1] = self.conn
+                    self.n = self.n +1
             print(self.RPI)
+            if self.n == 2:
+                self.startStatus()
 
     def status(self):
-            time.sleep(5)
-            try:
-                self.conn.send(b"Test")  # отправляем любые данные
-            except BaseException:
-                print('connection timed out1')  # соединение разорвано
+        while self.n == 2:
+            time.sleep(20)
+            for i in self.RPI:
+                if self.RPI[i][1] != None:
+                    try:
+                        self.conn.send(b"Test")  # отправляем любые данные
+                        print("Дошло")
+                    except BaseException:
+                        print('connection timed out1')  # соединение разорвано
 
-    # def startStatus(self):
-    #     thread0 = Thread(target=self.status())
-    #     thread0.start()
+    def startStatus(self):
+        thread0 = Thread(target=self.status())
+        thread0.start()
 
+    # --------------------------------------------------------------
     def stop(self):
         print("stop EXHIBITION")
         self.terminate()
@@ -185,4 +193,3 @@ class Server(Thread):
                 print('error', str(e))
                 return 0
         return 1
-
