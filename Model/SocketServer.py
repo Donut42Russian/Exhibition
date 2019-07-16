@@ -17,7 +17,11 @@ class Server(Thread):
         self.sock.listen(4)
         self.n = 0
         self.RPI = self.Settings.settings
-
+        
+        #self.RPI1 = self.RPI[0]
+        #self.RPI2 = self.RPI[1]
+        #self.RPI3 = self.RPI[2]
+        #self.RPI4 = self.RPI[3]
 
     def run(self):
         while True:
@@ -29,22 +33,48 @@ class Server(Thread):
                     self.n = self.n +1
             print(self.RPI)
             if self.n == 2:
-                self.startStatus()
+                self.startControlConnection()
 
-    def status(self):
+    def startControlConnection(self):
         while self.n == 2:
-            time.sleep(20)
-            for i in self.RPI:
-                if self.RPI[i][1] != None:
-                    try:
-                        self.conn.send(b"Test")  # отправляем любые данные
-                        print("Дошло")
-                    except BaseException:
-                        print('connection timed out1')  # соединение разорвано
+            time.sleep(5)
+            self.status1()
+            self.status2()
+            #self.status3()
 
-    def startStatus(self):
-        thread0 = Thread(target=self.status())
-        thread0.start()
+    def status1(self):
+        print("Пошло1")
+        for i in self.RPI1:
+            if self.RPI1[1] != None:
+                try:
+                    self.conn.send(b"Test1")  # отправляем любые данные
+                    print("Дошло1")
+                except BaseException:
+                    print('connection timed out1')  # соединение разорвано
+                    self.n = self.n - 1
+
+    def status2(self):
+        print("Пошло2")
+        for i in self.RPI:
+            if self.RPI2[1] != None:
+                try:
+                    self.conn.send(b"Test2")  # отправляем любые данные
+                    print("Дошло2")
+                except BaseException:
+                    print('connection timed out2')  # соединение разорвано
+                    self.n = self.n - 1
+
+    # def status3(self):
+    #     print("Пошло3")
+    #     time.sleep(5)
+    #     for i in self.RPI:
+    #         if self.RPI[i][1] != None:
+    #             try:
+    #                 self.conn.send(b"Test3")  # отправляем любые данные
+    #                 print("Дошло3")
+    #             except BaseException:
+    #                 print('connection timed out3')  # соединение разорвано
+    #                 self.n = self.n - 1
 
     # --------------------------------------------------------------
     def stop(self):
