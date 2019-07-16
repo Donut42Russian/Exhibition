@@ -17,6 +17,27 @@ class Server(Thread):
         self.sock.listen(4)
 
         self.RPI = self.Settings.settings
+    #--------------------------------------------------------------
+
+    def run(self):
+        while True:
+            self.conn, self.addr = self.sock.accept()
+            for i in self.RPI:
+                print(self.RPI[i][0])
+                if self.RPI[i][0] == self.addr[0]:
+                    self.RPI[i][1] = self.conn
+            print(self.RPI)
+
+    def status(self):
+            time.sleep(5)
+            try:
+                self.conn.send(b"Test")  # отправляем любые данные
+            except BaseException:
+                print('connection timed out1')  # соединение разорвано
+
+    # def startStatus(self):
+    #     thread0 = Thread(target=self.status())
+    #     thread0.start()
 
     def stop(self):
         print("stop EXHIBITION")
@@ -164,23 +185,4 @@ class Server(Thread):
                 print('error', str(e))
                 return 0
         return 1
-    #--------------------------------------------------------------
-    def run(self):
-        while True:
-            self.conn, self.addr = self.sock.accept()
-            for i in self.RPI:
-                print(self.RPI[i][0])
-                if self.RPI[i][0] == self.addr[0]:
-                    self.RPI[i][1] = self.conn
-            print(self.RPI)
 
-    def status(self):
-            time.sleep(5)
-            try:
-                self.conn.send(b"Test")  # отправляем любые данные
-            except BaseException:
-                print('connection timed out1')  # соединение разорвано
-
-    def startStatus(self):
-        thread0 = Thread(target=self.status())
-        thread0.start()
