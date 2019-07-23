@@ -7,6 +7,21 @@ from threading import Thread
 from tune_up.settings import Settings
 
 
+def ControlConnection(Settings: Settings):
+    while True:
+        RPI = Settings.settings
+        time.sleep(3)
+        print("Пошло")
+        for i in RPI:
+            if RPI[i][1] != None:
+                try:
+                    RPI[i][1].send(b"Test1")  # отправляем любые данные
+                    print("Дошло", RPI[i])
+                except BaseException:
+                    print('connection timed out', RPI[i])  # соединение разорвано
+                    RPI[i][1] = None
+
+
 class Server(Thread):
 
     def __init__(self, Settings: Settings):
@@ -18,10 +33,10 @@ class Server(Thread):
         self.n = 0
         self.RPI = self.Settings.settings
 
-        #self.RPI1 = self.RPI[0]
-        #self.RPI2 = self.RPI[1]
-        #self.RPI3 = self.RPI[2]
-        #self.RPI4 = self.RPI[3]
+        # self.RPI1 = self.RPI[0]
+        # self.RPI2 = self.RPI[1]
+        # self.RPI3 = self.RPI[2]
+        # self.RPI4 = self.RPI[3]
 
     def run(self):
         while True:
@@ -30,51 +45,9 @@ class Server(Thread):
                 print(self.RPI[i][0])
                 if self.RPI[i][0] == self.addr[0]:
                     self.RPI[i][1] = self.conn
-                    self.n = self.n +1
-            print(self.RPI)
-            # if self.n == 2:
-            #     self.startControlConnection()
-
-    # def startControlConnection(self):
-    #     while self.n == 2:
-    #         time.sleep(5)
-    #         self.status1()
-    #         self.status2()
-            #self.status3()
-
-# def status1(self):
-#     print("Пошло1")
-#     for i in self.RPI1:
-#         if self.RPI1[1] != None:
-#             try:
-#                 self.conn.send(b"Test1")  # отправляем любые данные
-#                 print("Дошло1")
-#             except BaseException:
-#                 print('connection timed out1')  # соединение разорвано
-#                 self.n = self.n - 1
-
-    # def status2(self):
-    #     print("Пошло2")
-    #     for i in self.RPI:
-    #         if self.RPI2[1] != None:
-    #             try:
-    #                 self.conn.send(b"Test2")  # отправляем любые данные
-    #                 print("Дошло2")
-    #             except BaseException:
-    #                 print('connection timed out2')  # соединение разорвано
-    #                 self.n = self.n - 1
-
-    # def status3(self):
-    #     print("Пошло3")
-    #     time.sleep(5)
-    #     for i in self.RPI:
-    #         if self.RPI[i][1] != None:
-    #             try:
-    #                 self.conn.send(b"Test3")  # отправляем любые данные
-    #                 print("Дошло3")
-    #             except BaseException:
-    #                 print('connection timed out3')  # соединение разорвано
-    #                 self.n = self.n - 1
+                    print(self.RPI[i][1])
+                    self.Settings.updateSettings(self.RPI)
+                    print(self.RPI)
 
     # --------------------------------------------------------------
     def stop(self):

@@ -31,5 +31,3 @@ class Settings:
 
     def updateSettings(self, settings: dict):
         self.settings.update(settings)
-
-#

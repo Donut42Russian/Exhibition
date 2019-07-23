@@ -3,18 +3,21 @@ from PyQt5 import QtWidgets
 
 from vievs.viev import View
 from Model.SocketServer import Server
+from Model.SocketServer import ControlConnection
 from tune_up.settings import Settings
+import threading
 
 
 class Controller:
     def __init__(self):
         self._app = QtWidgets.QApplication(sys.argv)
-
         pathSettings = r'tune_up/settings'
         self.testSettings = Settings(pathSettings)
         self._view = View()
         self.objServer = Server(self.testSettings)
         self.objServer.start()
+        thread = threading.Thread(target=ControlConnection, args=(Settings,))
+        thread.start()
         self.init()
 
     def init(self):
