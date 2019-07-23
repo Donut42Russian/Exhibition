@@ -10,13 +10,13 @@ from tune_up.settings import Settings
 def ControlConnection(Settings: Settings):
     while True:
         RPI = Settings.settings
-        time.sleep(3)
-        print("Пошло")
+        time.sleep(10)
         for i in RPI:
             if RPI[i][1] != None:
                 try:
-                    RPI[i][1].send(b"Test1")  # отправляем любые данные
+                    RPI[i][1].send(b"Test")  # отправляем любые данные
                     print("Дошло", RPI[i])
+                    Settings.updateSettings(RPI)
                 except BaseException:
                     print('connection timed out', RPI[i])  # соединение разорвано
                     RPI[i][1] = None

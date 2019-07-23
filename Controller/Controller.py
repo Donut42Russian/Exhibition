@@ -16,7 +16,7 @@ class Controller:
         self._view = View()
         self.objServer = Server(self.testSettings)
         self.objServer.start()
-        thread = threading.Thread(target=ControlConnection, args=(Settings,))
+        thread = threading.Thread(target=ControlConnection, args=(self.testSettings,))
         thread.start()
         self.init()
 
