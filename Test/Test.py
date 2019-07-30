@@ -1,43 +1,39 @@
-import socket
-import time
-from threading import Thread
-from tune_up.settings import Settings
+import sys
+import cv2
+from PyQt5 import QtGui, QtCore, uic, QtWidgets
 
-
-class Client(Thread):
-
-    def __init__(self):
-        Thread.__init__(self)
-        self.sock = socket.socket()
-        self.sock.bind(("192.168.1.56", 9091))
-        self.sock.listen(4)
-
-        pathSettings = r'C:\Users\admin\Desktop\Project\Exhibition\Test\settingsTest'
-        self.testSettings = Settings(pathSettings)
-        self.RPI = self.testSettings.settings
+class videoThread(QtCore.QThread):
+    # Requires IP address of streaming server
+    def __init__(self,address):
+        super(videoThread,self).__init__()
+        self.ip = address
 
     def run(self):
-        while True:
-            self.conn, addr = self.sock.accept()
-            for i in self.RPI:
-                print(self.RPI[i][0])
-                if self.RPI[i][0] == addr[0]:
-                    self.RPI[i][1] = self.conn
-            print(self.RPI)
+        # Create a capture object using the IP address specified at init.
+        cap = cv2.VideoCapture("http://"+ str(self.ip) +
+            ":8080/?action=stream?dummy=param.mjpg")
+        while cap.isOpened():
+            _,frame = cap.read()
+            image = QtGui.QImage(frame.tostring(),1280,720,QtGui.QImage.Format_RGB888)
+            self.emit(QtCore.SIGNAL('newImage(QImage)'), image)
 
-    def status(self):
-        while True:
-            time.sleep(1)
-            try:
-                self.conn.send(b"Test")  # отправляем любые данные
-            except BaseException:
-                print('connection timed out1')  # соединение разорвано
+class MyWindow(QtWidgets.QMainWindow):
 
-    def startStatus(self):
-        thread0 = Thread(target=self.status())#, daemon=True
-        thread0.start()
+    def __init__(self,template):
+        super(MyWindow,self).__init__()
+        uic.loadUi(template,self)
+        self.video = videoThread("192.168.1.150")
+        self.video.start()
+        self.label.connect(self.video,QtCore.SIGNAL('newImage(QImage)'),self.setFrame)
+        self.statusBar().hide()
 
+    def setFrame(self,frame):
+        pixmap = QtGui.QPixmap.fromImage(frame)
+        self.label.setPixmap(pixmap)
 
-test = Client()
-test.start()
-test.startStatus()
+if __name__ == '__main__':
+        app = QtWidgets.QApplication(sys.argv)
+        window = MyWindow('~/PyQt4/template.ui')
+        window.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        window.show()
+        sys.exit(app.exec_())

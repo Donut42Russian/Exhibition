@@ -10,7 +10,7 @@ from tune_up.settings import Settings
 def ControlConnection(Settings: Settings):
     while True:
         RPI = Settings.settings
-        time.sleep(10)
+        time.sleep(5)
         for i in RPI:
             if RPI[i][1] != None:
                 try:
