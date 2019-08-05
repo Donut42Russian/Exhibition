@@ -133,7 +133,7 @@ if __name__ == '__main__':
         try:
             try:
                 print("Повтор подключения")
-                sock.connect(('192.168.1.56', 9090)) #192.168.1.184
+                sock.connect(('192.168.1.107', 9090)) #192.168.1.184
                 print('try connect')
             except TimeoutError as e:
                 sock = socket.socket()

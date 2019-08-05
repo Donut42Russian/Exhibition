@@ -6,7 +6,6 @@ from threading import Thread
 
 from tune_up.settings import Settings
 
-
 def ControlConnection(Settings: Settings):
     while True:
         RPI = Settings.settings
@@ -33,10 +32,6 @@ class Server(Thread):
         self.n = 0
         self.RPI = self.Settings.settings
 
-        # self.RPI1 = self.RPI[0]
-        # self.RPI2 = self.RPI[1]
-        # self.RPI3 = self.RPI[2]
-        # self.RPI4 = self.RPI[3]
 
     def run(self):
         while True:
@@ -94,9 +89,8 @@ class Server(Thread):
         return 1
 
     def run_projector(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Projector"][1]
                 if not self.conn is None:
                     self.conn.send(b"run_projector")
                 else:
@@ -104,12 +98,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def stop_projector(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Projector"][1]
                 if not self.conn is None:
                     self.conn.send(b"stop_projector")
                 else:
@@ -117,12 +110,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def run_monitor1(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor1"][1]
                 if not self.conn is None:
                     self.conn.send(b"run_monitor1")
                 else:
@@ -130,12 +122,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def stop_monitor1(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor1"][1]
                 if not self.conn is None:
                     self.conn.send(b"stop_monitor1")
                 else:
@@ -143,12 +134,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def run_monitor2(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor2"][1]
                 if not self.conn is None:
                     self.conn.send(b"run_monitor2")
                 else:
@@ -156,12 +146,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def stop_monitor2(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor2"][1]
                 if not self.conn is None:
                     self.conn.send(b"stop_monitor2")
                 else:
@@ -169,12 +158,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def run_monitor3(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor3"][1]
                 if not self.conn is None:
                     self.conn.send(b"run_monitor3")
                 else:
@@ -182,12 +170,11 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
 
     def stop_monitor3(self):
-        for i in self.RPI:
             try:
-                self.conn = self.RPI[i][1]
+                self.conn = self.RPI["Monitor3"][1]
                 if not self.conn is None:
                     self.conn.send(b"stop_monitor3")
                 else:
@@ -195,4 +182,4 @@ class Server(Thread):
             except socket.error as e:
                 print('error', str(e))
                 return 0
-        return 1
+            return 1
